@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="card p-6">
+    <div class="flex justify-between items-center mb-6">
+        <h2 class="text-2xl font-bold">System Logs</h2>
+        <div class="flex space-x-4">
+            <select class="bg-[#1a1b23] text-white px-4 py-2 rounded-lg border border-[#2f3241]">
+                <option value="all">All Devices</option>
+                <option value="online">Online Devices</option>
+                <option value="offline">Offline Devices</option>
+            </select>
+            <button class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600">
+                Export Logs
+            </button>
+        </div>
+    </div>
+    
+    <div class="space-y-4">
+        {% for log in logs %}
+        <div class="bg-[#1a1b23] p-4 rounded-lg">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-2">
+                <div class="text-gray-400">
+                    Device: <span class="text-white">{{ log.device.name }}</span>
+                </div>
+                <div class="text-gray-400">
+                    Temperature: <span class="text-white">{{ log.temperature }}°C</span>
+                </div>
+                <div class="text-gray-400">
+                    Battery: <span class="text-white">{{ log.battery }}%</span>
+                </div>
+                <div class="text-gray-400">
+                    Time: <span class="text-white">{{ log.timestamp.strftime('%Y-%m-%d %H:%M:%S') }}</span>
+                </div>
+            </div>
+            {% if log.log_entry %}
+            <p class="mt-2 text-gray-400">{{ log.log_entry }}</p>
+            {% endif %}
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

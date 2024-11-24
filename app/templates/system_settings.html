@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="card p-6">
+    <h2 class="text-2xl font-bold mb-6">System Settings</h2>
+    
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="bg-[#1a1b23] p-4 rounded-lg">
+            <h3 class="text-lg font-semibold mb-4">Notification Settings</h3>
+            <div class="space-y-4">
+                <div class="flex items-center justify-between">
+                    <span class="text-gray-400">Email Notifications</span>
+                    <label class="relative inline-flex items-center cursor-pointer">
+                        <input type="checkbox" class="sr-only peer">
+                        <div class="w-11 h-6 bg-gray-700 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-800 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600"></div>
+                    </label>
+                </div>
+                <div class="flex items-center justify-between">
+                    <span class="text-gray-400">SMS Alerts</span>
+                    <label class="relative inline-flex items-center cursor-pointer">
+                        <input type="checkbox" class="sr-only peer">
+                        <div class="w-11 h-6 bg-gray-700 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-800 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600"></div>
+                    </label>
+                </div>
+            </div>
+        </div>
+        
+        <div class="bg-[#1a1b23] p-4 rounded-lg">
+            <h3 class="text-lg font-semibold mb-4">Data Settings</h3>
+            <div class="space-y-4">
+                <div>
+                    <label class="block text-gray-400 mb-2">Data Retention Period</label>
+                    <select class="w-full bg-[#242632] border border-[#2f3241] rounded-lg p-2 text-white">
+                        <option value="30">30 Days</option>
+                        <option value="60">60 Days</option>
+                        <option value="90">90 Days</option>
+                        <option value="180">180 Days</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="block text-gray-400 mb-2">Backup Frequency</label>
+                    <select class="w-full bg-[#242632] border border-[#2f3241] rounded-lg p-2 text-white">
+                        <option value="daily">Daily</option>
+                        <option value="weekly">Weekly</option>
+                        <option value="monthly">Monthly</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="mt-6 flex justify-end">
+        <button class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600">
+            Save Settings
+        </button>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,109 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+    <!-- Device Info -->
+    <div class="lg:col-span-2">
+        <div class="card p-6">
+            <div class="flex items-center justify-between mb-6">
+                <div>
+                    <h2 class="text-2xl font-bold text-white">{{ device.name }}</h2>
+                    <span class="px-2 py-1 rounded-full text-xs {{ 'bg-green-900 text-green-300' if device.status == 'online' else 'bg-red-900 text-red-300' }}">
+                        {{ device.status }}
+                    </span>
+                </div>
+                <button class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600">
+                    Edit Device
+                </button>
+            </div>
+
+            <!-- Device Stats -->
+            <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+                <div class="bg-[#1a1b23] p-4 rounded-lg">
+                    <h3 class="text-gray-400 text-sm">Temperature</h3>
+                    <p class="text-2xl font-bold text-white">
+                        {{ logs[0].temperature if logs else 'N/A' }}°C
+                    </p>
+                </div>
+                <div class="bg-[#1a1b23] p-4 rounded-lg">
+                    <h3 class="text-gray-400 text-sm">Battery</h3>
+                    <p class="text-2xl font-bold text-white">
+                        {{ logs[0].battery if logs else 'N/A' }}%
+                    </p>
+                </div>
+                <div class="bg-[#1a1b23] p-4 rounded-lg">
+                    <h3 class="text-gray-400 text-sm">Uptime</h3>
+                    <p class="text-2xl font-bold text-white">
+                        {{ logs[0].uptime if logs else 'N/A' }}h
+                    </p>
+                </div>
+                <div class="bg-[#1a1b23] p-4 rounded-lg">
+                    <h3 class="text-gray-400 text-sm">Address</h3>
+                    <p class="text-lg font-bold text-white truncate">
+                        {{ device.address or 'Not set' }}
+                    </p>
+                </div>
+            </div>
+
+            <!-- Recent Logs -->
+            <div>
+                <h3 class="text-xl font-bold mb-4">Recent Logs</h3>
+                <div class="space-y-4">
+                    {% for log in logs %}
+                    <div class="bg-[#1a1b23] p-4 rounded-lg">
+                        <div class="grid grid-cols-2 gap-4 mb-2">
+                            <div class="text-gray-400">
+                                Temperature: <span class="text-white">{{ log.temperature }}°C</span>
+                            </div>
+                            <div class="text-gray-400">
+                                Battery: <span class="text-white">{{ log.battery }}%</span>
+                            </div>
+                            <div class="text-gray-400">
+                                Uptime: <span class="text-white">{{ log.uptime }} hours</span>
+                            </div>
+                            <div class="text-gray-400">
+                                Time: <span class="text-white">{{ log.timestamp.strftime('%Y-%m-%d %H:%M:%S') }}</span>
+                            </div>
+                        </div>
+                        {% if log.log_entry %}
+                        <p class="mt-2 text-gray-400">{{ log.log_entry }}</p>
+                        {% endif %}
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Side Panel -->
+    <div class="lg:col-span-1">
+        <div class="card p-6">
+            <h2 class="text-xl font-bold mb-4">Device Actions</h2>
+            <div class="space-y-4">
+                <button class="w-full bg-blue-500 text-white px-4 py-3 rounded-lg hover:bg-blue-600">
+                    Restart Device
+                </button>
+                <button class="w-full bg-[#1a1b23] text-white px-4 py-3 rounded-lg hover:bg-[#2f3241]">
+                    Update Firmware
+                </button>
+                <button class="w-full bg-[#1a1b23] text-white px-4 py-3 rounded-lg hover:bg-[#2f3241]">
+                    Export Data
+                </button>
+            </div>
+
+            <div class="mt-8">
+                <h2 class="text-xl font-bold mb-4">Device Health</h2>
+                <div class="bg-[#1a1b23] p-4 rounded-lg">
+                    <div class="flex justify-between items-center mb-2">
+                        <span class="text-gray-400">Status</span>
+                        <span class="text-green-400">Healthy</span>
+                    </div>
+                    <div class="w-full bg-[#2f3241] rounded-full h-2">
+                        <div class="bg-green-500 h-2 rounded-full" style="width: 85%"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

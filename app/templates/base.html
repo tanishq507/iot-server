@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Device Management System</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #1a1b23;
+            color: #ffffff;
+        }
+        .card {
+            background-color: #242632;
+            border-radius: 1rem;
+            border: 1px solid #2f3241;
+        }
+        .chart-gradient {
+            background: linear-gradient(180deg, rgba(24, 118, 242, 0.1) 0%, rgba(24, 118, 242, 0) 100%);
+        }
+    </style>
+</head>
+<body>
+    <nav class="bg-[#242632] border-b border-[#2f3241] p-4">
+        <div class="container mx-auto flex items-center justify-between">
+            <h1 class="text-xl font-bold text-white">Device Management System</h1>
+            <div class="flex items-center space-x-4">
+                <button class="bg-[#1a1b23] text-gray-300 px-4 py-2 rounded-lg hover:bg-[#2f3241]">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                    </svg>
+                </button>
+                <button class="bg-[#1a1b23] text-gray-300 px-4 py-2 rounded-lg hover:bg-[#2f3241]">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </nav>
+    <div class="container mx-auto p-6">
+        {% block content %}{% endblock %}
+    </div>
+</body>
+</html>
